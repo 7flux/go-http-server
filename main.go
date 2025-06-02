@@ -1,7 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 func main() {
-	fmt.Println("I hope everything is gonna be alright")
+	f, err := os.Open("messages.txt")
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	fmt.Println(f)
 }
