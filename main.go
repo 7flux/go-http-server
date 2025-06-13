@@ -1,28 +1,33 @@
 package main
 
 import (
-	"fmt"
-	"log"
-	"os"
+    "fmt"
+    "io"
+    "log"
+    "os"
 )
 
 func main() {
-	f, err := os.Open("messages.txt")
+    f, err := os.Open("messages.txt")
 
-	if err != nil {
-		log.Fatal(err)
-	}
+    if err != nil {
+        log.Fatal(err)
+    }
 
-	defer f.Close()
+    defer f.Close()
 
-	for {
-		data := make([]byte, 8)
-		n, err := f.Read(data)
-	
-		if err != nil {
-			break
-		}
+    for {
+        data := make([]byte, 8)
+        n, err := f.Read(data)
 
-		fmt.Printf("read: %s\n", string(data[:n]))
-	}
+        if err != nil {
+            break
+        }
+
+        fmt.Printf("read: %s\n", string(data[:n]))
+    }
+}
+
+func getLineChannel(f io.ReadCloser) <-chan string {
+
 }
